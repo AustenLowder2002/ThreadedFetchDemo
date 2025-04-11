@@ -13,7 +13,7 @@ public class ThreadedFetch : ControllerBase
     private static readonly HttpClient client = new HttpClient();
     private static readonly Stopwatch sw = new();
     private static readonly SemaphoreSlim semaphore = new SemaphoreSlim(3);
-    public async Task<IActionResult> FetchData() {
+    private async Task<IActionResult> FetchData() {
         var counter = 1;
         sw.Reset();
         sw.Start();
