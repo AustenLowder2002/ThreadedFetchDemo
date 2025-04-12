@@ -11,18 +11,19 @@ public class DatabaseConnector
         MySqlCommand myCommand = new MySqlCommand();
 
         MySqlConnection myConnection;
-        var sb = new MySqlConnectionStringBuilder() {
-            Server = "_mysql._tcp.example.abc.com.",
-            UserID = "user",
-            Password = "****",
-            DnsSrv = true,
+        var sb = new MySqlConnectionStringBuilder()
+        {
+            Server = "localhost",
+            Port = 3306,
+            UserID = "root",
+            Password = "12385",
             Database = "test"
         };
         myConnection = new MySqlConnection(sb.ConnectionString);
 
         try {
             myConnection.Open();
-            DataTable table = myConnection.GetSchema("MetaDataCollections");
+            DataTable table = myConnection.GetSchema("Tables");
             DisplayData(table);
         }
         catch (MySqlException ex) {

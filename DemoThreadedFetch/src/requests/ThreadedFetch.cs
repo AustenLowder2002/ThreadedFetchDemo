@@ -15,7 +15,10 @@ public class ThreadedFetch : ControllerBase
     private static readonly SemaphoreSlim semaphore = new SemaphoreSlim(3);
     public async Task<IActionResult> FetchData() {
         var counter = 1;
-        DatabaseConnector.Database();
+        /*
+        Test the database connection with this
+        DatabaseConnector.Database(); 
+        */
         sw.Reset();
         sw.Start();
 
