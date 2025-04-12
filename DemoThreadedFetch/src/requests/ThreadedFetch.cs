@@ -8,13 +8,14 @@ public class ThreadedFetch : ControllerBase
         maxCount = maxTaskCount;
         limitThreads = limit;
     }
-    private static string limitThreads;
+    private static string? limitThreads;
     private static int maxCount;
     private static readonly HttpClient client = new HttpClient();
     private static readonly Stopwatch sw = new();
     private static readonly SemaphoreSlim semaphore = new SemaphoreSlim(3);
-    private async Task<IActionResult> FetchData() {
+    public async Task<IActionResult> FetchData() {
         var counter = 1;
+        DatabaseConnector.Database();
         sw.Reset();
         sw.Start();
 
