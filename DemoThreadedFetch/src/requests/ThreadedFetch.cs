@@ -18,6 +18,7 @@ public class ThreadedFetch : ControllerBase
         This is how you connect to any database
         DatabaseConnector.Database();
         */
+        
         sw.Reset();
         sw.Start();
 
