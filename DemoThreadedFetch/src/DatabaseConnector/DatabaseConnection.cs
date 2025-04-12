@@ -8,8 +8,8 @@ public class DatabaseConnector
 {
 
     public static void Database() {
-        MySqlCommand myCommand = new MySqlCommand();
-
+        MySqlCommand myCommand = new();
+        myCommand.CommandTimeout = 60;
         MySqlConnection myConnection;
         var sb = new MySqlConnectionStringBuilder()
         {
@@ -25,6 +25,16 @@ public class DatabaseConnector
             myConnection.Open();
             DataTable table = myConnection.GetSchema("Tables");
             DisplayData(table);
+            // Based on documentaion for dotnet mysql connector
+            myCommand.Connection = myConnection;
+            myCommand.CommandText = "DROP PROCEDURE IF EXISTS add_emp";
+            myCommand.ExecuteNonQuery();
+            myCommand.CommandText = "DROP TABLE IF EXISTS emp";
+            myCommand.ExecuteNonQuery();
+            myCommand.CommandText = "CREATE TABLE emp (" +
+            "empno INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY," +
+            "first_name VARCHAR(20), last_name VARCHAR(20), birthdate DATE)";
+            myCommand.ExecuteNonQuery();
         }
         catch (MySqlException ex) {
             switch (ex.Number) {

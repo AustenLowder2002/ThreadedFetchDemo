@@ -15,8 +15,8 @@ public class ThreadedFetch : ControllerBase
     public async Task<IActionResult> FetchData() {
         var counter = 1;
         /*
-        Test the database connection with this
-        DatabaseConnector.Database(); 
+        This is how you connect to any database
+        DatabaseConnector.Database();
         */
         sw.Reset();
         sw.Start();
