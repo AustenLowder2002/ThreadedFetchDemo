@@ -1,6 +1,5 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.ObjectPool;
 
 public class ThreadedFetch : ControllerBase
 {
@@ -57,7 +56,7 @@ public class ThreadedFetch : ControllerBase
     
     private async Task<IActionResult> GetRequest(string url, int counter){
         if(limitThreads == "yes"){
-        await semaphore.WaitAsync();
+            await semaphore.WaitAsync();
         }
         try{
             Console.WriteLine($"Task{counter}");
