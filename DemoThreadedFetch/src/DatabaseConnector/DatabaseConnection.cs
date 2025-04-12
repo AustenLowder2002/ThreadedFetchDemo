@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 public class DatabaseConnector
 {
 
-    private async Task Database() {
+    private static void Database() {
 
         MySqlConnection myConnection;
         var sb = new MySqlConnectionStringBuilder() {
