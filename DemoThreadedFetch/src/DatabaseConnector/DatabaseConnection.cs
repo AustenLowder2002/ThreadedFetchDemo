@@ -77,6 +77,8 @@ public class DatabaseConnector
             myCommand.CommandTimeout = 60;
             myCommand.CommandText = "INSERT INTO emp VALUES(NULL, @text1, @text, @date)";
 
+            myCommand.Parameters.Clear();
+            
             myCommand.Parameters.AddWithValue("@date", DateTime.Now);
             myCommand.Parameters.AddWithValue("@text", "One");
             myCommand.Parameters.AddWithValue("@text1", "Two");
